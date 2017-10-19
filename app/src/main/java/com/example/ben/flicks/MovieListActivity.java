@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.example.ben.flicks.models.Config;
 import com.example.ben.flicks.models.Movie;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -27,11 +28,12 @@ public class MovieListActivity extends AppCompatActivity {
     public final static String TAG = "MovieListActivity";
 
     AsyncHttpClient client;
-    String imageBaseUrl;
-    String posterSize;
+    //String imageBaseUrl;
+    //String posterSize;
     ArrayList<Movie> movies;
     RecyclerView rvMovies;
     MovieAdapter adapter;
+    Config config;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,11 +88,12 @@ public class MovieListActivity extends AppCompatActivity {
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 try {
-                    JSONObject images = response.getJSONObject("images");
-                    imageBaseUrl = images.getString("secure_base_url");
-                    JSONArray posterSizeOptions = images.getJSONArray("poster_size");
-                    posterSize = posterSizeOptions.optString(3, "w342");
-                    Log.i(TAG, String.format("Loaded configuration with imageBaseUrl %s and posterSize %s", imageBaseUrl, posterSize));
+                    config = new Config(response);
+                    Log.i(TAG,
+                            String.format("Loaded configuration with imageBaseUrl %s and posterSize %s",
+                                    config.getImageBaseUrl(),
+                                    config.getPosterSize()));
+                    adapter.setConfig(config);
                     getNowPlaying();
                 } catch (JSONException e) {
                     logError("Failed parsing configuration", e, true);
