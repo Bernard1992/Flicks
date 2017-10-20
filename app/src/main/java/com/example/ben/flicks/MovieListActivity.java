@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import cz.msebera.android.httpclient.Header;
 
 public class MovieListActivity extends AppCompatActivity {
-    public final static String API_BASE_URL ="http://api.themoviedb.org/3";
+    public final static String API_BASE_URL ="https://api.themoviedb.org/3";
     public final static String API_KEY_PARAM ="api_key";
 
     public final static String TAG = "MovieListActivity";
