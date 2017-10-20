@@ -86,7 +86,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         public ViewHolder(View itemView) {
             super(itemView);
             ivPosterImage = (ImageView)itemView.findViewById(R.id.ivPosterImage);
-            ivBackdropImage= (ImageView)itemView.findViewById(R.id.ivBackdropImage);
+            //ivBackdropImage= (ImageView)itemView.findViewById(R.id.ivBackdropImage);
             tvOverview = (TextView) itemView.findViewById(R.id.tvOverview);
             tvtitle = (TextView) itemView.findViewById(R.id.tvTitle);
         }
